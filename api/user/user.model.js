@@ -45,5 +45,11 @@ const Store = [
       driver.availablity = 0;
       return driver;
     },
+    getDriver: async({latitude, longitude}) => {
+      const drivers = Store.filter(
+        (s) => s.availablity == 1 && s.role == "driver"
+      )
+      return drivers;
+    }
   };
   
