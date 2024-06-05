@@ -1,18 +1,17 @@
 <a href="/">메뉴로 이동</a>
-<h1>available</h1>
+<h1>booking</h1>
 <form id="frmLogin">
-  운전자ID(Email) : <input type="text" name="email" /><br />
-  위도 :
+  탑승자ID(Email) : <input type="text" name="email" /><br />
+  자기위치(위도) :
   <input type="text" name="latitude" /><br />
-  경도 :
+  자기위치(경도) :
   <input type="text" name="longitude" />
 </form>
-<button onclick="available()">상태변경(자동)</button><br />
-<button>상태변경(수동)</button>
+<button onclick="fBookings()">가까운 택시 잡아 부킹해줘</button><br />
 
 <script>
   const $ = document.querySelector.bind(document);
-  async function available() {
+  async function fBookings() {
     var formData = new FormData($('#frmLogin'));
     var data = {};
     formData.forEach(function (value, key) {
@@ -21,7 +20,7 @@
 
     alert(JSON.stringify(data));
 
-    var url = '/api/users/available';
+    var url = '/api/bookings';
     const response = await fetch(url, {
       method: 'POST',
       headers: {
@@ -29,7 +28,6 @@
       },
       body: JSON.stringify(data),
     });
-    alert('아휴 이제, 손님 좀 받자');
     const json = await response.json();
     console.log(JSON.stringify(json));
   }

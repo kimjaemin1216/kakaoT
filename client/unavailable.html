@@ -1,18 +1,14 @@
 <a href="/">메뉴로 이동</a>
-<h1>available</h1>
+<h1>unavailable</h1>
 <form id="frmLogin">
-  운전자ID(Email) : <input type="text" name="email" /><br />
-  위도 :
-  <input type="text" name="latitude" /><br />
-  경도 :
-  <input type="text" name="longitude" />
+  운전자ID(Email) : <input type="text" name="email" /><br>
 </form>
-<button onclick="available()">상태변경(자동)</button><br />
+<button onclick="unavailable()">상태변경(자동)</button><br />
 <button>상태변경(수동)</button>
 
 <script>
   const $ = document.querySelector.bind(document);
-  async function available() {
+  async function unavailable() {
     var formData = new FormData($('#frmLogin'));
     var data = {};
     formData.forEach(function (value, key) {
@@ -21,15 +17,15 @@
 
     alert(JSON.stringify(data));
 
-    var url = '/api/users/available';
+    var url = '/api/users/unavailable';
     const response = await fetch(url, {
-      method: 'POST',
+      method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(data),
     });
-    alert('아휴 이제, 손님 좀 받자');
+    alert('나는 이제 손님 못받아유');
     const json = await response.json();
     console.log(JSON.stringify(json));
   }

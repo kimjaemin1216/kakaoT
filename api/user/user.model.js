@@ -5,6 +5,7 @@ const Store = [
       role: 'user',
       email: 'flowergam@gmail.com',
       password: '0618',
+      availablity: 1,
     },
     {
       name: '강진주',
@@ -34,9 +35,14 @@ const Store = [
     },
     available: async (email, { latitude, longitude }) => {
       const driver = Store.find((s) => s.email === emaill);
-      driver.available = 1;
+      driver.availablity = 1;
       driver.position.latitude = latitude;
       driver.position.longitude = longitude;
+      return driver;
+    },
+    unavailable: async (email) => {
+      const driver = Store.find((s) => s.email === email);
+      driver.availablity = 0;
       return driver;
     },
   };
