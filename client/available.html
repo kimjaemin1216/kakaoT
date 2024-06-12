@@ -29,8 +29,7 @@
       },
       body: JSON.stringify(data),
     });
-    alert('아휴 이제, 손님 좀 받자');
     const json = await response.json();
-    console.log(JSON.stringify(json));
+    alert(JSON.stringify(json));
   }
 </script>

@@ -29,7 +29,7 @@ export function create(req, res, next) {
 
 export function login(req, res, next) {
   const { email, password } = req.body || {};
-  User.findOne({ email, password })
+  return User.findOne({ email, password })
     .then((user) => {
       return user;
     })
@@ -38,6 +38,7 @@ export function login(req, res, next) {
 
 export function available(req, res) {
   const { email, latitude, longitude } = req.body || {};
+  console.log(email, latitude, longitude);
   return User.longitude(email, { latitude, longitude })
     .then((user) => {
       return '아휴 이제, 손님 좀 받자';

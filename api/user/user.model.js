@@ -1,3 +1,5 @@
+import { getDistance1, getDistance2 } from "../../utils/commFun.js"
+
 // 아래는 행후, 몽고DB로 바꿀것임 (꼭 잊지말고)
 const Store = [
     {
@@ -16,6 +18,17 @@ const Store = [
       position: {
         latitude: 17.38,
         longitude: 78.48,
+      },
+    },
+    {
+      name: '유리하나',
+      role: 'driver',
+      email: 'YuRiHaNa@gmail.com',
+      password: '1822',
+      availablity: 1,
+      position: {
+        latitude: 37.5665,
+        longitude: 126.978,
       },
     },
   ];
@@ -45,11 +58,22 @@ const Store = [
       driver.availablity = 0;
       return driver;
     },
-    getDriver: async({latitude, longitude}) => {
+    getDriver: async({latitude : lat, longitude : lon}) => {
       const drivers = Store.filter(
         (s) => s.availablity == 1 && s.role == "driver"
       )
-      return drivers;
+
+      return drivers.find((driver) => {
+        const {
+          position: {latitude, longitude}
+        } = driver;
+        console.log(
+          `택시 기사의 위도값 : ${latitude}, 경도값 : ${longitude}`
+        )
+        const dist1 = getDistance1(latitude, longitude, lat, lon);
+        console.log(`택시기사와 나와의 거리 : ${dist1}`);
+        if (dist1 <= 5) return true
+      })
     }
   };
   

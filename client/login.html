@@ -27,8 +27,7 @@
       },
       body: JSON.stringify(data),
     });
-    alert('결과는 콘솔에서 확인하세요');
     const json = await response.json();
-    console.log(JSON.stringify(json));
+    alert(JSON.stringify(json));
   }
 </script>

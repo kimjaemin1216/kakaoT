@@ -1,6 +1,6 @@
 import express from "express";
 import path from "path";
-import {create as createController} from "booking.controller.js";
+import {create as createController} from "./booking.controller.js";
 
 var router = express.Router()
 

@@ -25,8 +25,7 @@
       },
       body: JSON.stringify(data),
     });
-    alert('나는 이제 손님 못받아유');
     const json = await response.json();
-    console.log(JSON.stringify(json));
+    alert(JSON.stringify(json));
   }
 </script>
