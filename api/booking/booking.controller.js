@@ -4,7 +4,7 @@ import { Booking } from "./booking.model.js";
 function responseWithResult(res, statusCode){
     statusCode = statusCode || 200;
     return function (entity){
-        res.status(statusCode).join(entity);
+        res.status(statusCode).JSON(entity);
     }
 }
 function handleError(res, statusCode){
@@ -33,7 +33,7 @@ export async function create(req, res, next){
         .then((booking) => {
             console.log(`booking:${booking}`);
             const kimjaemin = Object.assign({}, booking, {
-                messge: "Booking Successfull",
+                messge: "축하합니다. 부킹되었습니다.",
             });
             console.log(`booking:${JSON.stringify(tmp)}`);
             return tmp;
