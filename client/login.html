@@ -1,9 +1,9 @@
 <a href="/">메뉴로 이동</a>
 <h1>로그인</h1>
 <form id="frmLogin">
-  로그인ID(Email) : <input type="text" name="email" /><br />
-  비밀번호 :
-  <input type="text" name="password" /><br />
+  로그인ID(Email): <input type="text" name="email" /><br />
+  비밀번호:
+  <input type="text" name="password" />
 </form>
 <button onclick="fLogin()">로그인</button><br />
 
@@ -15,9 +15,7 @@
     formData.forEach(function (value, key) {
       data[key] = value;
     });
-
     alert(JSON.stringify(data));
-    return;
 
     var url = '/api/users/login';
     const response = await fetch(url, {
